@@ -7,7 +7,7 @@ const List = ({ items }) => {
          <ul className="list">
             {
                items.map(item => (
-                  <li className='active'>
+                  <li className={item.active ? 'active' : ''}>
                      <i>
                         {item.icon ? item.icon : <i className={`badge badge--${item.color}`}></i>}
                      </i>
