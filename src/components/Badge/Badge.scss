@@ -3,15 +3,29 @@
   width: 10px;
   height: 10px;
   border-radius: 30px;
-  position: relative;
   left: 5px;
+  &--grey {
+    background-color: #c9d1d3;
+  }
   &--green {
     background-color: #42b883;
+  }
+  &--lime {
+    background-color: #b6e6bd;
+  }
+  &--purple {
+    background-color: #c355f5;
   }
   &--blue {
     background-color: #1e21bd;
   }
+  &--black {
+    background-color: #110133;
+  }
   &--pink {
     background-color: #db37d3;
+  }
+  &--red {
+    background-color: #ff6464;
   }
 }

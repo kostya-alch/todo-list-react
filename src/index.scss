@@ -17,7 +17,7 @@
   width: 750px;
   height: 530px;
   transform: translate(-50%, -50%);
-  box-shadow: 1 2 20px #f3f3f3;
+  box-shadow: 1px 2px 20px #f3f3f3;
   border-radius: 10px;
   border: 1px solid #f1f1f1;
   font-size: 14px;
@@ -27,6 +27,7 @@
     width: 200px;
     height: 100%;
     border-right: 1px solid #f1f1f1;
+    height: calc(100% - 120px);
     padding: 60px 20px;
   }
 }
