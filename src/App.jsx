@@ -35,10 +35,11 @@ function App() {
       }]} />
 
       <List items={lists}
-        isRemovable />
+        isRemovable onRemove={(list) => console.log(list)} />
 
       <AddList onAddList={onAddList}
-        colors={DB.colors} />
+        colors={DB.colors}
+      />
     </div>
     <div className="todo__tasks">
 
