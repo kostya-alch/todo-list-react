@@ -5,9 +5,24 @@ import closeBtn from '../../assets/img/close.svg'
 
 import './AddList.scss'
 
-const AddList = ({ colors }) => {
+const AddList = ({ colors, onAddList }) => {
    const [visiblePopup, setVisiblePopup] = useState(false)
    const [selectedColor, setSelectedColor] = useState(colors[0].id)
+   const [inputValue, setInputValue] = useState('')
+
+   const onClose = () => {
+      setVisiblePopup(false)
+      setInputValue('')
+      setSelectedColor(colors[0].id)
+   }
+   const addList = () => {
+      const color = colors.filter(c => c.id === selectedColor)[0].name
+      onAddList({
+         id: Math.random(), name: inputValue, color,
+      })
+      onClose()
+
+   }
    return (
       <div className='add-list'>
          <List onClick={() => setVisiblePopup(!visiblePopup)}
@@ -24,8 +39,14 @@ const AddList = ({ colors }) => {
                ]
             } />
          {visiblePopup && <div className="add-list__popup">
-            <img onClick={() => setVisiblePopup(false)} src={closeBtn} alt="close" className='add-list__popup-close-btn' />
-            <input className='field' type="text" placeholder='Название списка' />
+            <img onClick={onClose}
+               src={closeBtn}
+               alt="close"
+               className='add-list__popup-close-btn' />
+            <input value={inputValue}
+               onChange={e => setInputValue(e.target.value)}
+               className='field' type="text"
+               placeholder='Название списка' />
             <div className="add-list__popup-colors">
                <ul>
 
@@ -40,7 +61,9 @@ const AddList = ({ colors }) => {
                   }
                </ul>
             </div>
-            <button className='button'>Добавить</button>
+            <button disabled={!inputValue}
+               onClick={addList}
+               className='button'>Добавить</button>
          </div>}
       </div>
 
