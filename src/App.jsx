@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddList from './components/AddList/AddList';
 import DB from './assets/db.json'
 import List from './components/List/List';
+import Tasks from './components/Tasks/Tasks';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
       />
     </div>
     <div className="todo__tasks">
+      <Tasks />
 
     </div>
   </div>;
