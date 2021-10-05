@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Badge from '../Badge/Badge'
 import List from '../List/List'
 import closeBtn from '../../assets/img/close.svg'
 
 import './AddList.scss'
+import axios from 'axios'
 
 const AddList = ({ colors, onAddList }) => {
    const [visiblePopup, setVisiblePopup] = useState(false)
-   const [selectedColor, setSelectedColor] = useState(colors[0].id)
+   const [selectedColor, setSelectedColor] = useState(3)
    const [inputValue, setInputValue] = useState('')
+   const [isLoading, setIsLoading] = useState(false)
+
+   useEffect(() => {
+      if (Array.isArray(colors)) {
+         setSelectedColor(colors[0].id)
+      }
+   }, [colors])
 
    const onClose = () => {
       setVisiblePopup(false)
@@ -16,16 +24,28 @@ const AddList = ({ colors, onAddList }) => {
       setSelectedColor(colors[0].id)
    }
    const addList = () => {
-      const color = colors.filter(c => c.id === selectedColor)[0].name
-      onAddList({
-         id: Math.random(), name: inputValue, color,
+      if (!inputValue) {
+         alert('Введите название списка');
+         return;
+      }
+      setIsLoading(true)
+      axios.post('http://localhost:3001/lists', {
+         name: inputValue, colorId: selectedColor
       })
-      onClose()
+         .then(({ data }) => {
+            const color = colors.filter(c => c.id === selectedColor)[0].name
+            const listObj = { ...data, color: { name: color } }
+            onAddList(listObj)
+            onClose()
+         })
+         .finally(() => {
+            setIsLoading(false)
+         })
 
    }
    return (
       <div className='add-list'>
-         <List onClick={() => setVisiblePopup(!visiblePopup)}
+         <List onClick={() => setVisiblePopup(true)}
             items={
                [
                   {
@@ -43,6 +63,7 @@ const AddList = ({ colors, onAddList }) => {
                src={closeBtn}
                alt="close"
                className='add-list__popup-close-btn' />
+
             <input value={inputValue}
                onChange={e => setInputValue(e.target.value)}
                className='field' type="text"
@@ -63,7 +84,8 @@ const AddList = ({ colors, onAddList }) => {
             </div>
             <button disabled={!inputValue}
                onClick={addList}
-               className='button'>Добавить</button>
+               className='button'>
+               {isLoading ? 'Добавление...' : 'Добавить'}</button>
          </div>}
       </div>
 

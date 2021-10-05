@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import AddList from './components/AddList/AddList';
+import List from './components/List/List';
+import Tasks from './components/Tasks/Tasks';
 import axios from 'axios';
-
-import { List, AddList, Tasks } from './components';
 
 function App() {
   const [lists, setLists] = useState(null);
@@ -59,7 +60,7 @@ function App() {
         ) : (
           'Загрузка...'
         )}
-        <AddList onAdd={onAddList} colors={colors} />
+        <AddList onAddList={onAddList} colors={colors} />
       </div>
       <div className="todo__tasks">{lists && <Tasks list={lists[1]} />}</div>
     </div>
