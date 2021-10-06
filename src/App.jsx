@@ -25,6 +25,17 @@ function App() {
     setLists(newList);
   };
 
+
+  const onAddTask = (listId, taskObj) => {
+    const newList = lists.map(item => {
+      if (item.id === listId) {
+        item.tasks = [...item.tasks, taskObj]
+      }
+      return item
+    })
+    setLists(newList)
+  };
+
   const onEditListTitle = (id, title) => {
     const newList = lists.map(item => {
       if (item.id === id) {
@@ -40,7 +51,9 @@ function App() {
       <div className="todo__sidebar">
         <List
           items={[
+
             {
+              active: true,
               icon: (
                 <svg
                   width="18"
@@ -78,7 +91,7 @@ function App() {
         <AddList onAddList={onAddList} colors={colors} />
       </div>
       <div className="todo__tasks">{lists && activeItem &&
-        <Tasks list={activeItem} onEditTitle={onEditListTitle} />}</div>
+        <Tasks list={activeItem} onAddTask={onAddTask} onEditTitle={onEditListTitle} />}</div>
     </div>
   );
 }
