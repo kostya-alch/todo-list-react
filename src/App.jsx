@@ -110,7 +110,7 @@ function App() {
           }}
           items={[
             {
-              active: true,
+              active: history.location.pathname === '/',
               icon: (
                 <svg
                   width="18"

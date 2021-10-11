@@ -24,6 +24,11 @@
       "name": "Чтение",
       "colorId": 8,
       "id": 5
+    },
+    {
+      "name": "Тестирование",
+      "colorId": 2,
+      "id": 6
     }
   ],
   "tasks": [
@@ -80,6 +85,18 @@
       "text": "Сходить в библиотеку",
       "completed": false,
       "id": 11
+    },
+    {
+      "listId": 4,
+      "text": "вффв",
+      "completed": false,
+      "id": 12
+    },
+    {
+      "listId": 6,
+      "text": "Норм",
+      "completed": false,
+      "id": 13
     }
   ],
   "colors": [
