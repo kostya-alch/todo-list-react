@@ -78,7 +78,27 @@ function App() {
       text: newTaskText
     })
       .catch(() =>
-        alert('Не удалось удалить задачу'))
+        alert('Не удалось обновить задачу'))
+  }
+
+  const onCompleteTask = (listId, taskId, completed) => {
+    const newList = lists.map(list => {
+      if (list.id === listId) {
+        list.tasks = list.tasks.map(task => {
+          if (task.id === taskId) {
+            task.completed = completed
+          }
+          return task;
+        })
+      }
+      return list;
+    })
+    setLists(newList);
+    axios.patch('http://localhost:3001/tasks/' + taskId, {
+      completed
+    })
+      .catch(() =>
+        alert('Не удалось обновить задачу'))
   }
 
   const onEditListTitle = (id, title) => {
@@ -156,7 +176,9 @@ function App() {
                 list={list}
                 onAddTask={onAddTask}
                 onEditTitle={onEditListTitle}
-                withoutEmpty />
+                onCompleteTask={onCompleteTask}
+                withoutEmpty
+                onRemoveTask={onRemoveTask} />
             )
           }
         </Route>
@@ -167,7 +189,8 @@ function App() {
               onAddTask={onAddTask}
               onEditTitle={onEditListTitle}
               onRemoveTask={onRemoveTask}
-              onEditTask={onEditTask} />}
+              onEditTask={onEditTask}
+              onCompleteTask={onCompleteTask} />}
         </Route>
       </div>
     </div>
