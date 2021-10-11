@@ -19,11 +19,6 @@
       "name": "Спорт",
       "colorId": 6,
       "id": 4
-    },
-    {
-      "name": "dada",
-      "colorId": 7,
-      "id": 5
     }
   ],
   "tasks": [
@@ -50,18 +45,6 @@
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
       "completed": false
-    },
-    {
-      "listId": 1,
-      "text": "Продать квартиру",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "listId": 1,
-      "text": "Написать чек-лист",
-      "completed": false,
-      "id": 6
     },
     {
       "listId": 3,

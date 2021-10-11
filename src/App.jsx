@@ -40,6 +40,23 @@ function App() {
     setLists(newList)
   };
 
+
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm('Вы дейсвительно хотите удалить задачу?')) {
+      const newList = lists.map(item => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter(task => task.id !== taskId)
+        }
+        return item;
+      })
+      setLists(newList);
+      axios.delete('http://localhost:3001/tasks/' + taskId)
+        .catch(() =>
+          alert('Не удалось удалить задачу'))
+    }
+  }
+
+
   const onEditListTitle = (id, title) => {
     const newList = lists.map(item => {
       if (item.id === id) {
@@ -49,6 +66,7 @@ function App() {
     });
     setLists(newList);
   }
+
 
   useEffect(() => {
     const listId = location.pathname.split('lists/')[1];
@@ -123,7 +141,8 @@ function App() {
             <Tasks
               list={activeItem}
               onAddTask={onAddTask}
-              onEditTitle={onEditListTitle} />}
+              onEditTitle={onEditListTitle}
+              onRemoveTask={onRemoveTask} />}
         </Route>
       </div>
     </div>
