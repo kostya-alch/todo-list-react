@@ -34,6 +34,7 @@
   &__tasks {
     flex: 1;
     padding: 48px;
+    overflow: auto;
   }
 }
 
@@ -45,7 +46,7 @@
   padding: 10px 20px;
   cursor: pointer;
   font-size: 14px;
-  
+
   &:hover {
     background: darken(#4dd599, 6%);
   }

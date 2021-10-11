@@ -16,9 +16,9 @@
       "colorId": 3
     },
     {
-      "id": 4,
-      "name": "Книги",
-      "colorId": 2
+      "name": "Спорт",
+      "colorId": 6,
+      "id": 4
     }
   ],
   "tasks": [
@@ -63,6 +63,12 @@
       "text": "Посмотреть особо странные дела",
       "completed": false,
       "id": 7
+    },
+    {
+      "listId": 1,
+      "text": "Убраться",
+      "completed": false,
+      "id": 8
     }
   ],
   "colors": [
