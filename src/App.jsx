@@ -56,6 +56,30 @@ function App() {
     }
   }
 
+  const onEditTask = (listId, taskObj) => {
+    const newTaskText = window.prompt('Текст задачи', taskObj.text)
+
+    if (!newTaskText) {
+      return;
+    }
+    const newList = lists.map(list => {
+      if (list.id === listId) {
+        list.tasks = list.tasks.map(task => {
+          if (task.id === taskObj.id) {
+            task.text = newTaskText
+          }
+          return task;
+        })
+      }
+      return list;
+    })
+    setLists(newList);
+    axios.patch('http://localhost:3001/tasks/' + taskObj.id, {
+      text: newTaskText
+    })
+      .catch(() =>
+        alert('Не удалось удалить задачу'))
+  }
 
   const onEditListTitle = (id, title) => {
     const newList = lists.map(item => {
@@ -142,7 +166,8 @@ function App() {
               list={activeItem}
               onAddTask={onAddTask}
               onEditTitle={onEditListTitle}
-              onRemoveTask={onRemoveTask} />}
+              onRemoveTask={onRemoveTask}
+              onEditTask={onEditTask} />}
         </Route>
       </div>
     </div>

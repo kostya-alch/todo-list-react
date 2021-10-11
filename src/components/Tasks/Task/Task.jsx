@@ -23,9 +23,9 @@ const Task = ({ id, text, list, onRemove, onEdit }) => {
                </svg>
             </label>
          </div>
-         <input readOnly value={text} />
+         <p>{text}</p>
          <div className="tasks__items-row-actions">
-            <div>
+            <div onClick={() => onEdit(list.id, { id, text })}>
                <svg
                   width="15"
                   height="15"
